@@ -1,0 +1,15 @@
+{
+  "name": "bamazon-customer",
+  "version": "1.0.0",
+  "description": "Shop bamazon products.",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "start": "node colleges",
+    "watch": "nodemon colleges"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.16.0"
+  }
+}
