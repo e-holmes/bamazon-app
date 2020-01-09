@@ -22,7 +22,7 @@ INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("Milk", "Dairy", 5.38, 10);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Pouring Medium", "Art's and Crafts", 12.35, 10);
+VALUES ("Pouring Medium", "Arts and Crafts", 12.35, 10);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("Dog Food", "Pets", 18.78, 10);
@@ -40,9 +40,12 @@ INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("Flour", "Baking", 5.12, 10);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("Pink Leather Jacket", "Women's Clothing", 42.99, 10);
+VALUES ("Pink Leather Jacket", "Womens Clothing", 42.99, 10);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("Duct Tape", "Maintenance", 2000.26, 10);
+
+INSERT INTO products (product_name, price)
+VALUES ("User Total", 0);
 
 SELECT * FROM products;
