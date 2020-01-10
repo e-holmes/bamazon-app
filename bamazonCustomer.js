@@ -74,11 +74,13 @@ function fetchData() {
       .then(function(answer) {
         if (quantity >= answer.action){
           console.log("Okay I will get on it!");
+          total = priceH * quantity;
           quantity = quantity - answer.action;
-          total = hold;
-          total = total[10].price +priceH;
-          updateProduct(itemID, quantity, total);
-          console.log("Your new total is: " +total);
+          newTotal = hold;
+          newTotal = newTotal[10].price + total;
+          updateProduct(itemID, quantity);
+          updateTotal(newTotal);
+          console.log("Your new total is: $" +newTotal);
         } else {
           console.log("Sorry, we don't have enough stock for your order!");
         }   
@@ -97,7 +99,14 @@ function fetchData() {
           item_ID: itemID
         }
       ],
-      "UPDATE products SET ? WHERE ?",
+      function(err, res) {
+        if (err) throw err;
+      }
+    );
+  }
+  function updateTotal(totalH) {
+    connection.query(
+     "UPDATE products SET ? WHERE ?",
       [
         {
           price: totalH
@@ -108,7 +117,6 @@ function fetchData() {
       ],
       function(err, res) {
         if (err) throw err;
-        console.log(res.affectedRows + " product updated!\n");
       }
     );
   }
@@ -118,20 +126,16 @@ function fetchData() {
       .prompt({
         name: "action",
         type: "input",
-        message: "Would you like to buy more?(Yes or No)"
+        message: "Would you like to buy more?(Y or N)"
       })
       .then(function(answer) {
-        var answers = ["yes", "Yes", "No", "no"]
+        var answers = ["Y", "N"]
         if (answer.action == answers[0]){
           console.log("Okay, let's go back!");
           fetchData();
         }else if (answer.action == answers[1]){
-          console.log("Okay, let's go back!");
-          fetchData();
-        }else if(answer.action == answers[2]){
           console.log("Goodbye!");
-        }else if(answer.action == answers[3]){
-          console.log("Goodbye!");
+          connection.end();
         }
       });
     }
