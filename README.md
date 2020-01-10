@@ -4,9 +4,9 @@
 #### This app allows you to shop on your favorite Bamazon site!
 
 ## Index
-    1. bamazonCustomer.js
+    * bamazonCustomer.js
         * Jello
-    1. schema.sql
+    * schema.sql
         * Jello
 
 
