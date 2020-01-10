@@ -1,6 +1,10 @@
+
+// Node Requirements
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 
+
+// Database Details
 var connection = mysql.createConnection({
   host: "localhost",
 
@@ -11,17 +15,20 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "1234",
+  password: "",
   database: "bamazon_db"
 });
 
+
+// Connect to Database and Move to fetchData Function
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
     fetchData();
   });
 
-
+// Fetch Data from Database
+  // Then run DataDisplay and then continue to locateObject
 function fetchData() {
     connection.query("SELECT * FROM products", function(err, res) {
       if (err) throw err;
@@ -32,6 +39,7 @@ function fetchData() {
     });
   }
   
+  // Sort Data and Display in Table
   function dataDisplay(hold){
     var list = hold;
     const array = [];
@@ -43,7 +51,7 @@ function fetchData() {
     console.table(transformed);
   }
 
-
+// Ask User for Item ID then locate Item details and proceed to processOrder
   function locateObject(hold) {
     inquirer
       .prompt({
@@ -64,6 +72,11 @@ function fetchData() {
       });
   }
 
+  // Ask User for quantity of Item
+    // Decide if there is enough stock
+      // If enough stock update price and quantity and store through updateProduct and updateTotal. Then prompt new user total.
+      // If not enough stock return error message
+    // Then proceed to loopBack
   function processOrder(quantity, itemID , priceH, hold){
     inquirer
       .prompt({
@@ -88,6 +101,7 @@ function fetchData() {
       });
   }
 
+  // Store new quantity amount
   function updateProduct(itemID, quantity, totalH) {
     connection.query(
       "UPDATE products SET ? WHERE ?",
@@ -104,6 +118,8 @@ function fetchData() {
       }
     );
   }
+
+  // Store new user total
   function updateTotal(totalH) {
     connection.query(
      "UPDATE products SET ? WHERE ?",
@@ -121,6 +137,9 @@ function fetchData() {
     );
   }
 
+  // Ask if user would like to buy more and process answer
+    // If yes then take back to initial Data Display
+    // If no then end connection
   function loopBack(){
     inquirer
       .prompt({
