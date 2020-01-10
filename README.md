@@ -71,7 +71,10 @@
 4. If you would like to buy more type "Y" into the console without quotes and hit enter. If you would like to end your session type "N" in the command line without the quotes and hit enter.
 
 ## Video of App Running
+http://github.com - automatic!
+[GitHub](http://github.com)
 
+https://drive.google.com/file/d/1dN9B3l8MgMt9tgLUe7cCyI5A6J_fPZTY/view
 
 ## Link to Repository
 
